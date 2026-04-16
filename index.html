@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco-Art Awareness</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e3c2f, #4caf50);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    .highlight {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: #ffd700;
+      color: black;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffcc00;
+      transform: scale(1.05);
+    }
+
+    /* Fade-in animation */
+    .fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Eco facts card */
+    .fact-box {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 15px;
+      display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SECTION 1: HERO -->
+  <section>
+    <div class="container fade">
+      <h1>♻️ Eco-Art Awareness</h1>
+      <p>This artwork is made from waste collected in your community.</p>
+      <p class="highlight">Imagine if all of this ended up in the ocean.</p>
+      <button onclick="scrollToNext()">Discover More ↓</button>
+    </div>
+  </section>
+
+  <!-- SECTION 2: STORY -->
+  <section>
+    <div class="container fade">
+      <h2>The Story Behind This Artwork</h2>
+      <p>
+        Every material you see here was once thrown away — plastic, scrap, and forgotten waste.
+      </p>
+      <p>
+        Instead of polluting the environment, they were transformed into something meaningful.
+      </p>
+      <p class="highlight">
+        Waste is not the end — it can be a beginning.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 3: INTERACTIVE -->
+  <section>
+    <div class="container fade">
+      <h2>Did You Know?</h2>
+      <p>Click below to reveal environmental facts 🌍</p>
+      <button onclick="showFact()">Show Eco Fact</button>
+
+      <div class="fact-box" id="factBox"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: CALL TO ACTION -->
+  <section>
+    <div class="container fade">
+      <h2>You Are Part of the Solution</h2>
+      <p>
+        By reducing, reusing, and recycling, we can protect our planet.
+      </p>
+      <p class="highlight">
+        Small actions create big impact.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    // Scroll button
+    function scrollToNext() {
+      window.scrollBy({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      });
+    }
+
+    // Fade-in on scroll
+    const fades = document.querySelectorAll('.fade');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    fades.forEach(fade => {
+      observer.observe(fade);
+    });
+
+    // Eco facts
+    const facts = [
+      "Over 8 million tons of plastic enter the ocean every year.",
+      "A plastic bottle can take 450 years to decompose.",
+      "Recycling one ton of paper saves 17 trees.",
+      "Only 9% of plastic waste has ever been recycled.",
+      "Upcycling reduces landfill waste and pollution."
+    ];
+
+    function showFact() {
+      const factBox = document.getElementById("factBox");
+      const randomFact = facts[Math.floor(Math.random() * facts.length)];
+      
+      factBox.style.display = "block";
+      factBox.innerHTML = randomFact;
+    }
+  </script>
+
+</body>
+</html>
